@@ -1,0 +1,10 @@
+<div class="modal-backdrop" *ngIf="show">
+  <div class="modal-content">
+    <h2>{{ product.nombre }}</h2>
+    <img [src]="product.imagen" />
+    <p>{{ product.descripcion }}</p>
+    <strong>{{ product.precio }}</strong>
+    <br>
+    <button (click)="onClose()">Cerrar</button>
+  </div>
+</div>

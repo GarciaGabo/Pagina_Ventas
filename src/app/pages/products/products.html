@@ -1,14 +1,20 @@
 <h1>Nuestros productos</h1>
 <img src="/img/productos.jpg" alt="Moto">
+
 <section class="productos">
-    @for(producto of productos; track producto.id){
-        <article class="producto">
-            <img [src]="producto.imagen" [alt]="producto.nombre">
-            <h3>{{producto.nombre}}</h3>
-            <p>{{producto.descripcion}}</p>
-            <strong>{{producto.precio}}</strong>
-            <br>
-            <button>Ver más</button>
-        </article>
-    }
+  <article class="producto" *ngFor="let producto of productos">
+    <img [src]="producto.imagen" [alt]="producto.nombre" />
+    <h3>{{ producto.nombre }}</h3>
+    <p>{{ producto.descripcion }}</p>
+    <strong>{{ producto.precio }}</strong>
+    <br />
+    <button (click)="openModal(producto)">Ver más</button>
+  </article>
 </section>
+
+<app-product-modal
+  *ngIf="productSelected"
+  [product]="productSelected"
+  [show]="showModal"
+  (close)="closeModal()">
+</app-product-modal>
