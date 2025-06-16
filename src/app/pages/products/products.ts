@@ -3,6 +3,8 @@ import { Product } from '../../services/products';
 import { Products } from '../../services/products';
 import { CommonModule } from '@angular/common';
 import { ProductModal } from '../../shared/product-modal/product-modal';
+import { CartService } from '../../services/cart-service';
+
 @Component({
   standalone: true,
   selector: 'app-products',
@@ -15,7 +17,7 @@ export class Productos {
   productSelected: Product | null = null;
   showModal = false;
 
-  constructor(private product:Products){
+  constructor(private product:Products, private cartService: CartService){
     this.productos = this.product.getProducts();
   }
   openModal(product: Product) {
@@ -25,5 +27,8 @@ export class Productos {
   closeModal() {
     this.showModal = false;
     this.productSelected = null;
+  }
+  addToCart(product: Product){
+    this.cartService.addToCart(product);
   }
 }
